@@ -1,0 +1,13 @@
+
+>>Copy-PnPList -Identity "Fruits" -Title "Copt"
+
+$listItems = Get-PnPListItem -List 'Fruits' -Fields "Id","Title","Guid"
+PS C:\Windows\system32> Connect-PnPOnline -url 'https://t6syv.sharepoint.com/sites/'
+>> foreach($item in $listItems) {
+>>   $itemVal = @{
+>>     'Id' = $item['Id']
+>>     'Title' = $item['Title']
+>>     'GuiD' = $item['GUID']
+>>   }
+>>   Add-PnPListItem -List 'copt' -Values $itemVal -ContentType "Item"
+>> }

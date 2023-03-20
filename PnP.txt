@@ -16,4 +16,3 @@ $listItems = Get-PnPListItem -List 'Fruits' -Fields "Id","Title","Guid"
    }
   Add-PnPListItem -List 'SList' -Values $itemVal -ContentType "Item"
 }
-Get-PnPListItem -List 'SList'

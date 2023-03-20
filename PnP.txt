@@ -1,13 +1,19 @@
+$SiteURL="https://t6syv.sharepoint.com/sites/esraateamsite"
+$UserName="AlexW@t6syv.onmicrosoft.com"
+$Password = "Esraa#12345"
+$SecurePassword = ConvertTo-SecureString -String $Password -AsPlainText -Force
+$Cred = New-Object -TypeName System.Management.Automation.PSCredential -argumentlist $UserName, $SecurePassword
+Connect-PnPOnline -Url $SiteURL -Credentials $Cred
 
-Copy-PnPList -Identity "Fruits" -Title "Copt"
+Get-PnPListItem -List 'Fruits'
+
+New-PnPList -Title "SList" -Template GenericList
 
 $listItems = Get-PnPListItem -List 'Fruits' -Fields "Id","Title","Guid"
-PS C:\Windows\system32> Connect-PnPOnline -url 'https://t6syv.sharepoint.com/sites/'
  foreach($item in $listItems) {
    $itemVal = @{
-    'Id' = $item['Id']
-     'Title' = $item['Title']
-    'GuiD' = $item['GUID']
+    'Title' = $item['Title']
    }
-  Add-PnPListItem -List 'copt' -Values $itemVal -ContentType "Item"
+  Add-PnPListItem -List 'SList' -Values $itemVal -ContentType "Item"
 }
+Get-PnPListItem -List 'SList'
